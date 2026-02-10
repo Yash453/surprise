@@ -11,6 +11,7 @@ const noBtn = document.getElementById("noBtn");
 const resultMessage = document.getElementById("resultMessage");
 const peonyCelebration = document.getElementById("peonyCelebration");
 const petalRain = document.getElementById("petalRain");
+const closeCelebrationBtn = document.getElementById("closeCelebrationBtn");
 
 const YES_SCALE_STEP = 0.24;
 const YES_SCALE_MAX = 5.2;
@@ -46,6 +47,10 @@ function showPeonyCelebration() {
   requestAnimationFrame(() => {
     peonyCelebration.classList.add("show");
   });
+}
+
+function resetPage() {
+  window.location.reload();
 }
 
 function unlockIfCorrect() {
@@ -152,3 +157,7 @@ passwordInput.addEventListener("keydown", (event) => {
 noBtn.addEventListener("mouseenter", moveNoButton);
 noBtn.addEventListener("click", moveNoButton);
 yesBtn.addEventListener("click", celebrateYes);
+
+if (closeCelebrationBtn) {
+  closeCelebrationBtn.addEventListener("click", resetPage);
+}

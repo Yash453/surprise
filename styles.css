@@ -329,11 +329,11 @@ body {
 .question-zone {
   position: relative;
   width: min(96vw, 1120px);
-  height: clamp(220px, 38vh, 420px);
+  height: clamp(180px, 32vh, 360px);
   border-radius: 1.4rem;
-  border: 2px dashed rgba(188, 69, 131, 0.4);
-  background: rgba(255, 255, 255, 0.55);
-  box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.6);
+  border: 0;
+  background: transparent;
+  box-shadow: none;
   overflow: visible;
 }
 
@@ -349,7 +349,7 @@ body {
 }
 
 .btn:active {
-  transform: translateY(1px);
+  filter: brightness(0.98);
 }
 
 .btn-unlock {
@@ -367,17 +367,18 @@ body {
 .btn-no {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
 
 .btn-yes {
   --yes-scale: 1;
-  left: 22%;
+  left: 40%;
   background: linear-gradient(150deg, #ff81b2, var(--yes));
   color: #fff;
   box-shadow: 0 8px 0 var(--yes-shadow), 0 12px 20px rgba(198, 30, 90, 0.22);
-  transform: translateY(-50%) scale(var(--yes-scale));
+  transform: translate(-50%, -50%) scale(var(--yes-scale));
   transform-origin: center;
+  z-index: 12;
 }
 
 .btn-yes:hover {
@@ -385,12 +386,13 @@ body {
 }
 
 .btn-no {
-  left: 56%;
+  left: 60%;
   background: var(--no);
   color: var(--no-text);
   border: 2px solid #ffd0e3;
   box-shadow: 0 6px 0 #e6adc8;
   transition: left 140ms ease, top 140ms ease, transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+  z-index: 11;
 }
 
 .result-message {
@@ -421,6 +423,7 @@ body {
 
 .peony-celebration.show {
   opacity: 1;
+  pointer-events: auto;
 }
 
 .peony-overlay {
@@ -430,6 +433,34 @@ body {
     radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.42), transparent 36%),
     radial-gradient(circle at 90% 20%, rgba(255, 255, 255, 0.32), transparent 32%),
     linear-gradient(170deg, rgba(255, 199, 223, 0.78), rgba(255, 157, 199, 0.72));
+  pointer-events: none;
+}
+
+.close-celebration-btn {
+  position: absolute;
+  top: clamp(16px, 4vw, 34px);
+  right: clamp(16px, 4vw, 34px);
+  width: clamp(38px, 5.5vw, 52px);
+  height: clamp(38px, 5.5vw, 52px);
+  border: 0;
+  border-radius: 999px;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  line-height: 1;
+  color: #b31958;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 8px 20px rgba(152, 32, 89, 0.28);
+  cursor: pointer;
+  z-index: 3;
+  pointer-events: auto;
+}
+
+.close-celebration-btn:hover {
+  transform: scale(1.06);
+}
+
+.close-celebration-btn:active {
+  transform: scale(0.98);
 }
 
 .petal-rain {
@@ -751,15 +782,15 @@ body {
 @media (max-width: 700px) {
   .question-zone {
     width: 98vw;
-    height: 300px;
+    height: 240px;
   }
 
   .btn-yes {
-    left: 16%;
+    left: 38%;
   }
 
   .btn-no {
-    left: 54%;
+    left: 62%;
   }
 
   .bouquet {
