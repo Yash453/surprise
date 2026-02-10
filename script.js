@@ -42,6 +42,10 @@ function buildPetalRain() {
 function showPeonyCelebration() {
   if (!peonyCelebration) return;
 
+  // Reset oversized yes button so the bottom message remains visible.
+  yesScale = 1;
+  yesBtn.style.setProperty("--yes-scale", "1");
+
   buildPetalRain();
   peonyCelebration.classList.remove("hidden");
   requestAnimationFrame(() => {
@@ -49,8 +53,33 @@ function showPeonyCelebration() {
   });
 }
 
-function resetPage() {
-  window.location.reload();
+function resetToQuestionState() {
+  answered = false;
+  movedCount = 0;
+  yesScale = 1;
+
+  // Reset buttons to initial interactive state.
+  yesBtn.style.setProperty("--yes-scale", "1");
+  yesBtn.textContent = "YES 💘";
+
+  noBtn.disabled = false;
+  noBtn.style.opacity = "";
+  noBtn.style.cursor = "";
+  noBtn.style.display = "";
+  noBtn.style.position = "absolute";
+  noBtn.style.left = "";
+  noBtn.style.top = "";
+  noBtn.style.transform = "";
+  noBtn.style.zIndex = "";
+  noBtn.textContent = "No 🙈";
+
+  resultMessage.classList.remove("success");
+  resultMessage.textContent = "";
+
+  // Close the peony popup without re-locking the page.
+  peonyCelebration.classList.remove("show");
+  peonyCelebration.classList.add("hidden");
+  peonyCelebration.setAttribute("aria-hidden", "true");
 }
 
 function unlockIfCorrect() {
@@ -147,6 +176,7 @@ function celebrateYes() {
   yesBtn.textContent = "YES!!! 💞";
 
   showPeonyCelebration();
+  peonyCelebration.setAttribute("aria-hidden", "false");
 }
 
 unlockBtn.addEventListener("click", unlockIfCorrect);
@@ -159,5 +189,5 @@ noBtn.addEventListener("click", moveNoButton);
 yesBtn.addEventListener("click", celebrateYes);
 
 if (closeCelebrationBtn) {
-  closeCelebrationBtn.addEventListener("click", resetPage);
+  closeCelebrationBtn.addEventListener("click", resetToQuestionState);
 }
