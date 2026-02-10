@@ -1,0 +1,475 @@
+:root {
+  --bg-1: #ffe4ec;
+  --bg-2: #ffd6a5;
+  --bg-3: #ffcad4;
+  --text-main: #4a2849;
+  --text-soft: #7c496e;
+  --yes: #ff4d8d;
+  --yes-shadow: #c7215a;
+  --no: #ffffff;
+  --no-text: #5d3a5e;
+  --card: rgba(255, 255, 255, 0.8);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Fredoka", "Trebuchet MS", sans-serif;
+  color: var(--text-main);
+  background: radial-gradient(circle at 25% 20%, rgba(255, 255, 255, 0.65), transparent 35%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.5), transparent 30%),
+    linear-gradient(140deg, var(--bg-1), var(--bg-2), var(--bg-3));
+  overflow-x: hidden;
+}
+
+.sparkles {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image:
+    radial-gradient(circle at 12% 28%, rgba(255, 255, 255, 0.8) 0 2px, transparent 2px),
+    radial-gradient(circle at 72% 34%, rgba(255, 255, 255, 0.75) 0 2px, transparent 2px),
+    radial-gradient(circle at 90% 75%, rgba(255, 255, 255, 0.8) 0 2px, transparent 2px),
+    radial-gradient(circle at 30% 80%, rgba(255, 255, 255, 0.75) 0 2px, transparent 2px);
+  animation: shimmer 3.8s ease-in-out infinite;
+}
+
+.lock-screen {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  z-index: 20;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 214, 229, 0.72);
+}
+
+.lock-card {
+  width: min(92vw, 500px);
+  padding: 1.8rem;
+  border-radius: 1.4rem;
+  background: rgba(255, 255, 255, 0.95);
+  border: 3px dashed #ff73a9;
+  box-shadow: 0 14px 30px rgba(121, 36, 80, 0.18);
+  text-align: center;
+}
+
+.lock-card h1 {
+  margin: 0 0 0.5rem;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: #d82e75;
+}
+
+.lock-card p {
+  margin: 0 0 1rem;
+  font-size: 1.05rem;
+}
+
+#passwordInput {
+  width: 100%;
+  padding: 0.86rem;
+  border-radius: 0.8rem;
+  border: 2px solid #ffc0d8;
+  font: inherit;
+  text-align: center;
+  letter-spacing: 0.04em;
+  color: #8f2b5c;
+}
+
+#passwordInput:focus {
+  outline: none;
+  border-color: #ff4d8d;
+  box-shadow: 0 0 0 4px rgba(255, 77, 141, 0.18);
+}
+
+.hint-message {
+  min-height: 1.25rem;
+  margin-top: 0.75rem;
+  color: #b01b58;
+  font-weight: 600;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-content {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  padding: 2rem 1rem 3rem;
+}
+
+.hero {
+  text-align: center;
+  animation: floatIn 0.8s ease both;
+}
+
+.tiny-title {
+  margin: 0;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  color: var(--text-soft);
+  font-size: 1.05rem;
+}
+
+.hero h2 {
+  margin: 0.2rem 0 0;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(2rem, 5.8vw, 3.8rem);
+  line-height: 1;
+  color: #d1256f;
+  text-shadow: 0 3px 0 rgba(255, 255, 255, 0.65);
+}
+
+.chitti-zone {
+  position: relative;
+  width: min(92vw, 620px);
+  display: grid;
+  place-items: center;
+  gap: 0.6rem;
+}
+
+.dog-wrap {
+  width: min(88vw, 290px);
+  height: 220px;
+  border-radius: 2rem;
+  background: var(--card);
+  border: 2px solid rgba(255, 105, 156, 0.42);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 16px 28px rgba(164, 63, 111, 0.16);
+}
+
+.dog {
+  position: relative;
+  width: 180px;
+  height: 140px;
+  animation: dogBounce 2.3s ease-in-out infinite;
+}
+
+.body {
+  position: absolute;
+  left: 32px;
+  top: 58px;
+  width: 96px;
+  height: 52px;
+  border-radius: 28px;
+  background: #141414;
+}
+
+.spot {
+  position: absolute;
+  right: 12px;
+  top: 10px;
+  width: 30px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.95;
+}
+
+.tail {
+  position: absolute;
+  left: 12px;
+  top: 64px;
+  width: 28px;
+  height: 10px;
+  border-radius: 12px;
+  background: #141414;
+  transform-origin: right center;
+  animation: tailWag 0.55s ease-in-out infinite alternate;
+}
+
+.head {
+  position: absolute;
+  right: 20px;
+  top: 26px;
+  width: 82px;
+  height: 76px;
+  border-radius: 50% 52% 48% 52%;
+  background: #fdfdfd;
+  border: 3px solid #141414;
+}
+
+.ear {
+  position: absolute;
+  width: 26px;
+  height: 34px;
+  background: #141414;
+  border-radius: 50% 50% 16% 16%;
+  top: -16px;
+}
+
+.ear-left {
+  left: 6px;
+  transform: rotate(-18deg);
+}
+
+.ear-right {
+  right: 6px;
+  transform: rotate(16deg);
+}
+
+.eye {
+  position: absolute;
+  top: 25px;
+  width: 10px;
+  height: 12px;
+  border-radius: 50%;
+  background: #171717;
+}
+
+.eye-left {
+  left: 20px;
+}
+
+.eye-right {
+  right: 20px;
+}
+
+.snout {
+  position: absolute;
+  left: 20px;
+  bottom: 10px;
+  width: 38px;
+  height: 26px;
+  border-radius: 20px;
+  background: #fff;
+  border: 2px solid #141414;
+}
+
+.nose {
+  position: absolute;
+  left: 12px;
+  top: 4px;
+  width: 12px;
+  height: 8px;
+  border-radius: 10px;
+  background: #111;
+}
+
+.tongue {
+  position: absolute;
+  left: 13px;
+  bottom: -8px;
+  width: 10px;
+  height: 12px;
+  border-radius: 0 0 8px 8px;
+  background: #ff78a5;
+}
+
+.paw {
+  position: absolute;
+  bottom: 10px;
+  width: 18px;
+  height: 24px;
+  border-radius: 12px;
+  background: #fff;
+  border: 2px solid #141414;
+}
+
+.paw-left {
+  left: 54px;
+}
+
+.paw-right {
+  left: 86px;
+}
+
+.dog-name {
+  margin: 0;
+  color: #b22f67;
+  font-size: 1rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.heart {
+  position: absolute;
+  font-size: clamp(1.2rem, 3vw, 2rem);
+  filter: drop-shadow(0 5px 8px rgba(220, 53, 122, 0.22));
+  animation: floatHeart 3.4s ease-in-out infinite;
+  user-select: none;
+}
+
+.heart-a {
+  left: 15%;
+  top: 0;
+}
+
+.heart-b {
+  right: 12%;
+  top: 12%;
+  animation-delay: 0.8s;
+}
+
+.heart-c {
+  left: 12%;
+  bottom: 10%;
+  animation-delay: 1.2s;
+}
+
+.heart-d {
+  right: 16%;
+  bottom: 0;
+  animation-delay: 1.8s;
+}
+
+.question-zone {
+  position: relative;
+  width: min(92vw, 680px);
+  height: 170px;
+  border-radius: 1.4rem;
+  border: 2px dashed rgba(188, 69, 131, 0.4);
+  background: rgba(255, 255, 255, 0.55);
+  box-shadow: inset 0 0 24px rgba(255, 255, 255, 0.6);
+}
+
+.btn {
+  border: 0;
+  border-radius: 999px;
+  padding: 0.86rem 1.5rem;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, background-color 180ms ease;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-unlock {
+  margin-top: 0.75rem;
+  background: linear-gradient(135deg, #ff85b3, #ff4d8d);
+  color: #fff;
+  box-shadow: 0 8px 0 #cc2b65;
+}
+
+.btn-unlock:hover {
+  transform: translateY(-1px);
+}
+
+.btn-yes,
+.btn-no {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.btn-yes {
+  left: 22%;
+  background: linear-gradient(150deg, #ff81b2, var(--yes));
+  color: #fff;
+  box-shadow: 0 8px 0 var(--yes-shadow), 0 12px 20px rgba(198, 30, 90, 0.22);
+}
+
+.btn-yes:hover {
+  transform: translateY(-50%) scale(1.08);
+}
+
+.btn-no {
+  left: 56%;
+  background: var(--no);
+  color: var(--no-text);
+  border: 2px solid #ffd0e3;
+  box-shadow: 0 6px 0 #e6adc8;
+}
+
+.result-message {
+  min-height: 2rem;
+  text-align: center;
+  font-family: "Baloo 2", "Trebuchet MS", sans-serif;
+  font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+  color: #bc195e;
+  font-weight: 800;
+  padding-inline: 1rem;
+}
+
+.result-message.success {
+  animation: popIn 0.6s ease both;
+}
+
+@keyframes shimmer {
+  0%, 100% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes floatIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatHeart {
+  0%, 100% {
+    transform: translateY(0) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-11px) rotate(6deg);
+  }
+}
+
+@keyframes dogBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+@keyframes tailWag {
+  from {
+    transform: rotate(18deg);
+  }
+  to {
+    transform: rotate(-14deg);
+  }
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (max-width: 700px) {
+  .question-zone {
+    height: 220px;
+  }
+
+  .btn-yes {
+    left: 16%;
+  }
+
+  .btn-no {
+    left: 54%;
+  }
+}

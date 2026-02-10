@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Krithu, Be My Valentine?</title>
+  <meta name="description" content="A cute interactive Valentine's Day page for Krithu.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Fredoka:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="sparkles" aria-hidden="true"></div>
+
+  <section class="lock-screen" id="lockScreen">
+    <div class="lock-card">
+      <h1>Secret Love Check</h1>
+      <p>what is the bestest day in the whole world?!</p>
+      <input
+        id="passwordInput"
+        type="text"
+        autocomplete="off"
+        placeholder="MM/DD/YYYY"
+        aria-label="password answer"
+      >
+      <button id="unlockBtn" class="btn btn-unlock">Unlock</button>
+      <p id="hintMessage" class="hint-message" role="status" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <main class="main-content hidden" id="mainContent">
+    <header class="hero">
+      <p class="tiny-title">For Krithu</p>
+      <h2>Will you be my valentine?</h2>
+    </header>
+
+    <section class="chitti-zone">
+      <div class="heart heart-a" aria-hidden="true">💖</div>
+      <div class="heart heart-b" aria-hidden="true">💕</div>
+      <div class="heart heart-c" aria-hidden="true">💘</div>
+      <div class="heart heart-d" aria-hidden="true">💗</div>
+
+      <div class="dog-wrap" aria-label="Animated border collie dog named Chitti">
+        <div class="dog">
+          <div class="tail"></div>
+          <div class="body">
+            <div class="spot"></div>
+          </div>
+          <div class="paw paw-left"></div>
+          <div class="paw paw-right"></div>
+          <div class="head">
+            <div class="ear ear-left"></div>
+            <div class="ear ear-right"></div>
+            <div class="eye eye-left"></div>
+            <div class="eye eye-right"></div>
+            <div class="snout">
+              <div class="nose"></div>
+              <div class="tongue"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="dog-name">Chitti is cheering for a YES ✨</p>
+    </section>
+
+    <section class="question-zone" id="questionZone">
+      <button id="yesBtn" class="btn btn-yes">YES 💘</button>
+      <button id="noBtn" class="btn btn-no">No 🙈</button>
+    </section>
+
+    <section id="resultMessage" class="result-message" aria-live="polite"></section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
